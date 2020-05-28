@@ -11,6 +11,7 @@ export const Bg = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 `;

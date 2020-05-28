@@ -5,7 +5,9 @@ import {
   Input,
   Add,
   AddCont,
-  Error
+  Error,
+  Tag,
+  TagsContainer
 } from "../styled/HomeStyled";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -56,12 +58,24 @@ export const NewMovie = () => {
         placeholder="Movie name"
         onChange={e => setMovie(e.target.value)}
       />
+      <TagsContainer>
+        {genres.map(genre => {
+          return <Tag>{genre}</Tag>;
+        })}
+      </TagsContainer>
       <Input
         name="genres"
         type="text"
         placeholder="Genres"
         onKeyDown={e => {
           if (e.keyCode == 13) {
+            const genreAdded = genres.filter(genre => {
+              return genre === e.target.value;
+            });
+            if (genreAdded.length > 0) {
+              return;
+            }
+            console.log(genreAdded);
             e.preventDefault();
             setGenres([...genres, e.target.value]);
             e.target.value = "";
@@ -73,6 +87,11 @@ export const NewMovie = () => {
           <p>Error! Please, try again.</p>
         </Error>
       ) : null}
+      {/* {movie === "" ? (
+        <Error>
+          <p>Movie field can't be empty.</p>
+        </Error>
+      ) : null} */}
       <AddCont>
         <Add type="submit" value="Add Movie" />
       </AddCont>

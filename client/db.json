@@ -2,59 +2,42 @@
   "movies": [
     {
       "id": 1,
-      "name": "Frozen",
-      "genres": [
-        "animation"
-      ],
+      "movie": "Frozen",
+      "genres": ["animation"],
       "watched": false
     },
     {
       "id": 2,
-      "name": "Gladiator",
-      "genres": [
-        "historical",
-        "drama"
-      ],
+      "movie": "Gladiator",
+      "genres": ["historical", "drama"],
       "watched": false
     },
     {
       "id": 3,
-      "name": "Titanic",
-      "genres": [
-        "romance",
-        "drama"
-      ],
+      "movie": "Titanic",
+      "genres": ["romance", "drama"],
       "watched": false
     },
     {
       "id": 4,
-      "name": "Scary Movie",
-      "genres": [
-        "comedy"
-      ],
+      "movie": "Scary Movie",
+      "genres": ["comedy"],
       "watched": false
     },
     {
       "id": 5,
-      "name": "The Exorcist",
-      "genres": [
-        "horror"
-      ],
+      "movie": "The Exorcist",
+      "genres": ["horror"],
       "watched": false
     },
     {
       "movie": "Tarzan",
-      "genres": [
-        "historical",
-        "animation"
-      ],
+      "genres": ["historical", "animation"],
       "id": 6
     },
     {
       "movie": "Shrek",
-      "genres": [
-        "animation"
-      ],
+      "genres": ["animation"],
       "id": 7
     }
   ]

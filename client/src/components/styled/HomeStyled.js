@@ -65,3 +65,19 @@ export const Error = styled.div`
     color: #fff;
   }
 `;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+`;
+
+export const Tag = styled.div`
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
+  background-color: ${s.gray};
+  color: ${s.green};
+  border: 1px solid ${s.green};
+`;
