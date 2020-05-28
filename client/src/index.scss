@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap");
+
+$green: #00ef9f;
+$darkGreen: #00d08b;
+$gray: #253648;
+
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.3rem;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.grid-container {
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0px 15px;
+  box-sizing: border-box;
+}
+
+.grid-header {
+  border-bottom: 1px solid $green;
+  color: $green;
+}
+
+.movie-row {
+  color: #fff;
+}
+
+.watch-status {
+  width: 10%;
+}
+
+.movie-title {
+  width: 35%;
+}
+
+.movie-genres {
+  width: 35%;
+}
+
+.movie-actions {
+  width: 20%;
+}
+
+.eye-icon {
+  color: $green;
+}

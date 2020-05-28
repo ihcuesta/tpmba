@@ -1,0 +1,3 @@
+export const ADD_MOVIE = "ADD_MOVIE";
+export const ADD_MOVIE_SUCCESS = "ADD_MOVIE_SUCCESS";
+export const ADD_MOVIE_ERROR = "ADD_MOVIE_ERROR";
