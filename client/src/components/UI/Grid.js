@@ -15,6 +15,10 @@ import { Loader } from "../styled/GlobalStyles";
 export const Grid = () => {
   const dispatch = useDispatch();
 
+  const [horror, setHorror] = useState(false);
+  const [romance, setRomance] = useState(false);
+  const [comedy, setComedy] = useState(false);
+
   // Switch watched etition
   // const movietoedit = useSelector(state => state.movies.movieswitch);
   // console.log(movietoedit);
@@ -25,13 +29,31 @@ export const Grid = () => {
   }, []);
 
   // Get the state
-  const movies = useSelector(state => state.movies.movies);
+  let movies = useSelector(state => state.movies.movies);
   const loading = useSelector(state => state.movies.loading);
 
   // Edit movie
   const editMovie = movie => {
     movie.watched = !movie.watched;
     dispatch(editMovieAction(movie));
+  };
+
+  // Reset filters
+  const reset = () => {
+    setHorror(false);
+    setComedy(false);
+    setRomance(false);
+  };
+
+  // Filters
+
+  const searchGenre = (genre, setGenre) => {
+    reset();
+    setGenre(true);
+
+    // movies = movies.filter(movie => {
+    //   return movie.genres.includes(genre);
+    // });
   };
 
   // Order movies
@@ -67,13 +89,34 @@ export const Grid = () => {
   return (
     <>
       <div className="checkbox-container">
-        <input type="radio" id="horror" name="genre" value="horror" />
+        <input
+          type="radio"
+          id="horror"
+          name="genre"
+          value="horror"
+          checked={horror}
+          onClick={e => searchGenre(e.target.value, setHorror)}
+        />
         <label for="horror">Horror</label>
-        <input type="radio" id="romance" name="genre" value="romance" />
+        <input
+          type="radio"
+          id="romance"
+          name="genre"
+          value="romance"
+          checked={romance}
+          onClick={e => searchGenre(e.target.value, setRomance)}
+        />
         <label for="romance">Romance</label>
-        <input type="radio" id="comedy" name="genre" value="comedy" />
+        <input
+          type="radio"
+          id="comedy"
+          name="genre"
+          value="comedy"
+          checked={comedy}
+          onClick={e => searchGenre(e.target.value, setComedy)}
+        />
         <label for="comedy">Comedy</label>
-        <button type="button" className="reset">
+        <button type="button" className="reset" onClick={reset}>
           Reset
         </button>
       </div>

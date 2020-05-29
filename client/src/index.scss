@@ -20,7 +20,7 @@ h3 {
 .grid-container {
   max-width: 1200px;
   margin: auto;
-  padding: 10px 0px;
+  padding: 10px 0px 50px;
 }
 
 .row {
@@ -80,6 +80,7 @@ h3 {
 
   label {
     padding-right: 25px;
+    box-sizing: border-box;
   }
 
   label:last-child {
@@ -146,12 +147,15 @@ h3 {
 
 .reset {
   color: $green;
-
   padding: 5px 10px;
   background-color: $gray;
   border-radius: 5px;
   margin-top: 2px;
   border: 1px solid $green;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .search-container {
