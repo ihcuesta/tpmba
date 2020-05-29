@@ -1,0 +1,45 @@
+{
+  "movies": [
+    {
+      "movie": "Bambi",
+      "genres": [
+        "animation"
+      ],
+      "watched": false,
+      "id": 4
+    },
+    {
+      "movie": "Ghostbusters",
+      "genres": [
+        "comedy",
+        "adventures",
+        "80's"
+      ],
+      "watched": false,
+      "id": 5
+    },
+    {
+      "movie": "Gladiator",
+      "genres": [],
+      "watched": false,
+      "id": 6
+    },
+    {
+      "movie": "Shrek",
+      "genres": [
+        "animation",
+        "comedy"
+      ],
+      "watched": false,
+      "id": 7
+    },
+    {
+      "movie": "Jurassic Park",
+      "genres": [
+        "adventures"
+      ],
+      "watched": true,
+      "id": 8
+    }
+  ]
+}
