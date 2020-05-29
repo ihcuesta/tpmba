@@ -4,7 +4,14 @@ import {
   ADD_MOVIE_ERROR,
   FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
-  FETCH_MOVIES_ERROR
+  FETCH_MOVIES_ERROR,
+  GET_MOVIE_DELETE,
+  DELETED_SUCCESS,
+  DELETED_ERROR,
+  GET_MOVIE_SWITCH,
+  START_EDITION_SWITCH,
+  EDIT_SUCCESS,
+  EDIT_ERROR
 } from "../types/index";
 import axiosClient from "../config/axios";
 
@@ -14,11 +21,13 @@ export function createNewMovieAction(movie) {
     dispatch(addMovie());
 
     try {
-      // Insert in API
-      await axiosClient.post("/movies", movie);
+      setTimeout(async () => {
+        // Insert in API
+        await axiosClient.post("/movies", movie);
 
-      // If everything is allright, update the state
-      dispatch(addMovieSuccess(movie));
+        // If everything is allright, update the state
+        dispatch(addMovieSuccess(movie));
+      }, 3000);
     } catch (error) {
       // If there is an error, change the state
       dispatch(addMovieError(true));
@@ -70,3 +79,67 @@ const fetchMoviesError = () => ({
   type: FETCH_MOVIES_ERROR,
   payload: true
 });
+
+// Select and delete the movie
+export const deleteMovieAction = id => {
+  return async dispatch => {
+    dispatch(getMovieDelete(id));
+    try {
+      setTimeout(async () => {
+        await axiosClient.delete(`/movies/${id}`);
+        dispatch(deleteMovieSuccess());
+      }, 3000);
+    } catch (error) {}
+  };
+};
+
+const getMovieDelete = id => ({
+  type: GET_MOVIE_DELETE,
+  payload: id
+});
+
+const deleteMovieSuccess = () => ({
+  type: DELETED_SUCCESS
+});
+
+const deleteMovieError = () => ({
+  type: DELETED_ERROR,
+  payload: true
+});
+
+// Select movie from list
+export const switchWatched = movie => {
+  return async dispatch => {
+    dispatch(getMovieSwitch(movie));
+  };
+};
+
+const getMovieSwitch = movie => ({
+  type: GET_MOVIE_SWITCH,
+  payload: movie
+});
+
+// Edit movie in API and state
+export const editMovieAction = movie => {
+  return async dispatch => {
+    dispatch(editMovie(movie));
+    try {
+      const response = await axiosClient.put(`/movies/${movie.id}`, movie);
+      dispatch(editMovieSuccess(movie));
+    } catch (error) {}
+  };
+};
+
+const editMovie = movie => ({
+  type: START_EDITION_SWITCH
+});
+
+const editMovieSuccess = movie => ({
+  type: EDIT_SUCCESS,
+  payload: movie
+});
+
+// const switchMovieError = () => ({
+//   type: SWITCH_ERROR,
+//   payload: true
+// });

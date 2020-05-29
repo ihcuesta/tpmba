@@ -1,44 +1,36 @@
 {
   "movies": [
     {
-      "id": 1,
-      "movie": "Frozen",
-      "genres": ["animation"],
-      "watched": false
+      "movie": "La Sirenita",
+      "genres": [
+        "animation"
+      ],
+      "id": 1
     },
     {
-      "id": 2,
-      "movie": "Gladiator",
-      "genres": ["historical", "drama"],
-      "watched": false
+      "movie": "Bambi",
+      "genres": [
+        "animation"
+      ],
+      "id": 2
     },
     {
-      "id": 3,
-      "movie": "Titanic",
-      "genres": ["romance", "drama"],
-      "watched": false
+      "movie": "Bambi",
+      "genres": [
+        "animation"
+      ],
+      "watched": false,
+      "id": 4
     },
     {
-      "id": 4,
-      "movie": "Scary Movie",
-      "genres": ["comedy"],
-      "watched": false
-    },
-    {
-      "id": 5,
-      "movie": "The Exorcist",
-      "genres": ["horror"],
-      "watched": false
-    },
-    {
-      "movie": "Tarzan",
-      "genres": ["historical", "animation"],
-      "id": 6
-    },
-    {
-      "movie": "Shrek",
-      "genres": ["animation"],
-      "id": 7
+      "movie": "Ghostbusters",
+      "genres": [
+        "comedy",
+        "adventures",
+        "80's"
+      ],
+      "watched": false,
+      "id": 5
     }
   ]
 }

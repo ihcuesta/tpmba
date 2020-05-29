@@ -18,6 +18,22 @@ export const NewMovie = () => {
   const [movie, setMovie] = useState("");
   const [genres, setGenres] = useState([]);
 
+  const genresFunction = e => {
+    if (e.keyCode == 13) {
+      const genreAdded = genres.filter(genre => {
+        return genre === e.target.value.toLowerCase();
+      });
+      if (genreAdded.length > 0) {
+        e.target.value = "";
+        return;
+      }
+      console.log(genreAdded);
+      e.preventDefault();
+      setGenres([...genres, e.target.value.toLowerCase()]);
+      e.target.value = "";
+    }
+  };
+
   // Using dispatch
   const dispatch = useDispatch();
 
@@ -39,12 +55,15 @@ export const NewMovie = () => {
       return;
     }
 
-    // check errors
+    // clean fields
+    setMovie("");
+    setGenres([]);
 
     // create new movie
     addMovie({
       movie,
-      genres
+      genres,
+      watched: false
     });
   };
 
@@ -67,20 +86,7 @@ export const NewMovie = () => {
         name="genres"
         type="text"
         placeholder="Genres"
-        onKeyDown={e => {
-          if (e.keyCode == 13) {
-            const genreAdded = genres.filter(genre => {
-              return genre === e.target.value;
-            });
-            if (genreAdded.length > 0) {
-              return;
-            }
-            console.log(genreAdded);
-            e.preventDefault();
-            setGenres([...genres, e.target.value]);
-            e.target.value = "";
-          }
-        }}
+        onKeyDown={e => genresFunction(e)}
       />
       {error ? (
         <Error>
@@ -95,7 +101,6 @@ export const NewMovie = () => {
       <AddCont>
         <Add type="submit" value="Add Movie" />
       </AddCont>
-      {loading ? <p>Loading...</p> : null}
     </FormContainer>
   );
 };

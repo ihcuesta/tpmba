@@ -1,13 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getMoviesAction } from "../../actions/movieActions";
+import {
+  getMoviesAction,
+  deleteMovieAction,
+  switchWatched,
+  editMovieAction
+} from "../../actions/movieActions";
 import { TagsContainer, Tag } from "../styled/HomeStyled";
+import { Loader } from "../styled/GlobalStyles";
 
 export const Grid = () => {
   const dispatch = useDispatch();
+
+  // Switch watched etition
+  // const movietoedit = useSelector(state => state.movies.movieswitch);
+  // console.log(movietoedit);
 
   useEffect(() => {
     const loadMovies = () => dispatch(getMoviesAction());
@@ -16,7 +26,43 @@ export const Grid = () => {
 
   // Get the state
   const movies = useSelector(state => state.movies.movies);
-  console.log(movies.movies);
+  const loading = useSelector(state => state.movies.loading);
+
+  // Edit movie
+  const editMovie = movie => {
+    movie.watched = !movie.watched;
+    dispatch(editMovieAction(movie));
+  };
+
+  // Order movies
+
+  // Get watched and not watched yet
+  const watched = movies.filter(movie => {
+    return movie.watched === true;
+  });
+
+  const notWatched = movies.filter(movie => {
+    return movie.watched === false;
+  });
+
+  // Join them to get new order
+  const newOrder = [...notWatched, ...watched];
+
+  // Confirm if the user wants to delete the movie
+  const confirmDeleteMovie = id => {
+    // Ask user
+    // Send to action
+    dispatch(deleteMovieAction(id));
+  };
+
+  // Switch movie watched
+  const switchMovie = id => {
+    // Ask user
+    // Send to action
+    dispatch(switchWatched(id));
+
+    // editWatched()
+  };
 
   return (
     <div className="grid-container">
@@ -34,16 +80,33 @@ export const Grid = () => {
           <h3>Actions</h3>
         </div>
       </div>
+      {loading ? (
+        <Loader>
+          <img src="loader.gif" alt="" />
+        </Loader>
+      ) : null}
       {movies.length === 0 ? (
         <div className="no-results">
           <p>There are not movies yet.</p>
         </div>
       ) : (
-        movies.map(movie => {
+        newOrder.map(movie => {
           return (
-            <div className="row movie-row">
+            <div key={movie.id} className="row movie-row">
               <div className="watch-status">
-                <FontAwesomeIcon icon={faEye} className="eye-icon" />
+                {movie.watched === false ? (
+                  <FontAwesomeIcon
+                    icon={faEyeSlash}
+                    className="eye-icon light"
+                    onClick={() => editMovie(movie)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    className="eye-icon"
+                    onClick={() => editMovie(movie)}
+                  />
+                )}
               </div>
               <div className="movie-title">
                 <p>{movie.movie}</p>
@@ -55,7 +118,13 @@ export const Grid = () => {
                   })}
                 </TagsContainer>
               </div>
-              <div className="movie-actions"></div>
+              <div className="movie-actions">
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className="eye-icon"
+                  onClick={() => confirmDeleteMovie(movie.id)}
+                />
+              </div>
             </div>
           );
         })
