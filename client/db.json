@@ -1,20 +1,6 @@
 {
   "movies": [
     {
-      "movie": "La Sirenita",
-      "genres": [
-        "animation"
-      ],
-      "id": 1
-    },
-    {
-      "movie": "Bambi",
-      "genres": [
-        "animation"
-      ],
-      "id": 2
-    },
-    {
       "movie": "Bambi",
       "genres": [
         "animation"
@@ -29,8 +15,31 @@
         "adventures",
         "80's"
       ],
-      "watched": false,
+      "watched": true,
       "id": 5
+    },
+    {
+      "movie": "Gladiator",
+      "genres": [],
+      "watched": false,
+      "id": 6
+    },
+    {
+      "movie": "Shrek",
+      "genres": [
+        "animation",
+        "comedy"
+      ],
+      "watched": false,
+      "id": 7
+    },
+    {
+      "movie": "Jurassic Park",
+      "genres": [
+        "adventures"
+      ],
+      "watched": false,
+      "id": 8
     }
   ]
 }

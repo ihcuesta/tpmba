@@ -17,20 +17,21 @@ import { createNewMovieAction } from "../../actions/movieActions";
 export const NewMovie = () => {
   const [movie, setMovie] = useState("");
   const [genres, setGenres] = useState([]);
+  const [genreField, setGenreField] = useState([]);
 
   const genresFunction = e => {
     if (e.keyCode == 13) {
       const genreAdded = genres.filter(genre => {
-        return genre === e.target.value.toLowerCase();
+        return genre === genreField.toLowerCase();
       });
       if (genreAdded.length > 0) {
-        e.target.value = "";
+        setGenreField("");
         return;
       }
       console.log(genreAdded);
       e.preventDefault();
-      setGenres([...genres, e.target.value.toLowerCase()]);
-      e.target.value = "";
+      setGenres([...genres, genreField.toLowerCase()]);
+      setGenreField("");
     }
   };
 
@@ -58,6 +59,7 @@ export const NewMovie = () => {
     // clean fields
     setMovie("");
     setGenres([]);
+    setGenreField("");
 
     // create new movie
     addMovie({
@@ -83,9 +85,11 @@ export const NewMovie = () => {
         })}
       </TagsContainer>
       <Input
+        value={genreField}
         name="genres"
         type="text"
         placeholder="Genres"
+        onChange={e => setGenreField(e.target.value)}
         onKeyDown={e => genresFunction(e)}
       />
       {error ? (
